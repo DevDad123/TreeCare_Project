@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'HomeScreen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
+                              builder: (context) => const Homescreen(),
                             ),
                           );
                         },
@@ -134,19 +134,6 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Center(
-        child: Text("Home Page"),
       ),
     );
   }
