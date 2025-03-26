@@ -1,42 +1,99 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:a/navbar.dart';
 
-class Homescreen extends StatelessWidget {
+import 'Diseasescreen.dart';
+import 'Infoscreen.dart';
+import 'Scanscreen.dart';
+import 'Subscription.dart';
+
+class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
   @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  void navigatetoscreen(BuildContext context, int index) {
+    Widget screen;
+    switch (index) {
+      case 0:
+        screen = const Homescreen();
+        break;
+      case 1:
+        screen = const Diseasescreen();
+        break;
+      case 2:
+        screen = const Scanscreen();
+        break;
+      case 3:
+        screen = const Subscription();
+        break;
+      case 4:
+        screen = const Infoscreen();
+        break;
+      default:
+        screen = const Homescreen();
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/avatar.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Scaffold(
-              backgroundColor: Colors.transparent,
-              drawer: navbar(),
-              appBar: AppBar(
-                iconTheme: const IconThemeData(color: Colors.white),
-                backgroundColor: Colors.green,
-                title: const Text(
-                  "TREECARE",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-                centerTitle: true,
-              ),
-            ),
-          ],
+    return Scaffold(
+      backgroundColor: Colors.green,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.exit_to_app),
         ),
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        title: const Text(
+          "TREECARE",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: 160,
+              width: 380,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.green,
+        animationDuration: const Duration(milliseconds: 350),
+        onTap: (index) {
+          navigatetoscreen(context, index);
+        },
+        items: const [
+          Icon(Icons.home, color: Colors.black),
+          Icon(Icons.medical_information, color: Colors.black),
+          Icon(Icons.qr_code_scanner, color: Colors.black),
+          Icon(Icons.currency_bitcoin, color: Colors.black),
+          Icon(Icons.question_mark, color: Colors.black),
+        ],
       ),
     );
   }
