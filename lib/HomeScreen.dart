@@ -64,18 +64,21 @@ class _HomescreenState extends State<Homescreen> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
         children: [
-          const SizedBox(height: 20),
-          Align(
-            alignment: Alignment.center,
+          Positioned(
+            top: kToolbarHeight + MediaQuery.of(context).padding.top - 50, // Position below the app bar
+            left: 10,
+            right: 10,
             child: Container(
-              height: 160,
-              width: 380,
+              height: 100,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                // Hoàn thện nốt
               ),
             ),
           ),
