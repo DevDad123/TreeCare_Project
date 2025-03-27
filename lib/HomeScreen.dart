@@ -17,9 +17,6 @@ class _HomescreenState extends State<Homescreen> {
   void navigatetoscreen(BuildContext context, int index) {
     Widget screen;
     switch (index) {
-      case 0:
-        screen = const Homescreen();
-        break;
       case 1:
         screen = const Diseasescreen();
         break;
@@ -33,7 +30,7 @@ class _HomescreenState extends State<Homescreen> {
         screen = const Infoscreen();
         break;
       default:
-        screen = const Homescreen();
+        return;
     }
     Navigator.push(
       context,
@@ -67,18 +64,165 @@ class _HomescreenState extends State<Homescreen> {
       body: Stack(
         children: [
           Positioned(
-            top: kToolbarHeight + MediaQuery.of(context).padding.top - 50, // Position below the app bar
+            top: kToolbarHeight + MediaQuery.of(context).padding.top - 50,
             left: 10,
             right: 10,
             child: Container(
-              height: 100,
+              height: 120,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Row(
-                // Hoàn thện nốt
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipOval(
+                      child: Image.asset(
+                        "assets/avatar.jpg",
+                        fit: BoxFit.cover,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Welcome!",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          "treecareprofile@gmail.com",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Grid of buttons
+          Positioned(
+            top: kToolbarHeight + MediaQuery.of(context).padding.top + 100,
+            left: 10,
+            right: 10,
+            child: Container(
+              height: 300,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemCount: 6,
+                  itemBuilder: (context, index) {
+                    final icons = [
+                      Icons.home,
+                      Icons.medical_information,
+                      Icons.qr_code_scanner,
+                      Icons.currency_bitcoin,
+                      Icons.question_mark,
+                      Icons.settings,
+                    ];
+                    final labels = [
+                      "Home",
+                      "Disease Info",
+                      "Scan",
+                      "Subscription",
+                      "Info",
+                      "Settings",
+                    ];
+
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.green.shade100,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              if (index == 0) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const Homescreen()),
+                                );
+                              } else if (index == 1) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const Diseasescreen()),
+                                );
+                              } else if (index == 2) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const Scanscreen()),
+                                );
+                              } else if (index == 3) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const Subscription()),
+                                );
+                              } else {
+                                Navigator.push(
+                                    context, 
+                                    MaterialPageRoute(builder: (context) => const Homescreen()),
+                                );
+                              }
+                            },
+                            icon: Icon(
+                              icons[index],
+                              size: 30,
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          labels[index],
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: kToolbarHeight + MediaQuery.of(context).padding.top + 430,
+            left: 10,
+            right: 10,
+            child: Container(
+              height: 300,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
               ),
             ),
           ),
