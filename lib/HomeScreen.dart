@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 import 'Diseasescreen.dart';
 import 'Infoscreen.dart';
@@ -61,12 +62,11 @@ class _HomescreenState extends State<Homescreen> {
         ),
         centerTitle: true,
       ),
-      body: Stack(
+      body: Column(
         children: [
-          Positioned(
-            top: kToolbarHeight + MediaQuery.of(context).padding.top - 50,
-            left: 10,
-            right: 10,
+          // Profile Section
+          Padding(
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               height: 120,
               width: double.infinity,
@@ -93,9 +93,9 @@ class _HomescreenState extends State<Homescreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Welcome!",
+                          "treecareprofile",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 23,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -103,7 +103,7 @@ class _HomescreenState extends State<Homescreen> {
                         Text(
                           "treecareprofile@gmail.com",
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 18,
                             color: Colors.grey,
                           ),
                         ),
@@ -114,14 +114,13 @@ class _HomescreenState extends State<Homescreen> {
               ),
             ),
           ),
-          // Grid of buttons
-          Positioned(
-            top: kToolbarHeight + MediaQuery.of(context).padding.top + 100,
-            left: 10,
-            right: 10,
+          const SizedBox(height: 10),
+
+          // Grid Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Container(
               height: 300,
-              width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -186,8 +185,8 @@ class _HomescreenState extends State<Homescreen> {
                                 );
                               } else {
                                 Navigator.push(
-                                    context, 
-                                    MaterialPageRoute(builder: (context) => const Homescreen()),
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const Homescreen()),
                                 );
                               }
                             },
@@ -213,17 +212,37 @@ class _HomescreenState extends State<Homescreen> {
               ),
             ),
           ),
-          Positioned(
-            top: kToolbarHeight + MediaQuery.of(context).padding.top + 430,
-            left: 10,
-            right: 10,
-            child: Container(
-              height: 280,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
+          const SizedBox(height: 5),
+
+          // Carousel Section
+          Expanded(
+            child: FlutterCarousel(
+              options: FlutterCarouselOptions(
+                height: 320.0,
+                showIndicator: true,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 2),
+                slideIndicator: CircularSlideIndicator(),
               ),
+              items: [1, 2, 3, 4, 5].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Info $i',
+                          style: const TextStyle(fontSize: 20.0),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
             ),
           ),
         ],
