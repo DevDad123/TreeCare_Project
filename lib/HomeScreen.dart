@@ -245,6 +245,7 @@ class _HomescreenState extends State<Homescreen> {
               }).toList(),
             ),
           ),
+          SizedBox(height: 15),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
