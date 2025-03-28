@@ -50,15 +50,15 @@ class Diseasescreen extends StatelessWidget {
                         child: Image.asset(
                           "assets/rose.jpg",
                           fit: BoxFit.cover,
-                          width: 85,
-                          height: 85,
+                          width: 90,
+                          height: 90,
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Padding(
-                    padding: const EdgeInsets.only(left: 60),
+                    padding: const EdgeInsets.only(left: 55),
                     child: const Text(
                       "Rose",
                       style: TextStyle(
