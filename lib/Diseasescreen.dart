@@ -8,9 +8,8 @@ class Diseasescreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.green,
       body: ListView(
-        physics: const BouncingScrollPhysics(), // Enable scrolling with bounce effect
+        physics: const BouncingScrollPhysics(),
         children: [
-          // First Container
           Padding(
             padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
             child: Container(
@@ -19,19 +18,47 @@ class Diseasescreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
               ),
-              child: const Center(
-                child: Text(
-                  "Disease Info 1",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/crop.jpg",
+                          fit: BoxFit.cover,
+                          width: 90,
+                          height: 90,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 55),
+                    child: Text(
+                      "Rice",
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 85),
+                    child: IconButton(
+                      iconSize: 30,
+                      onPressed: () {
+                        print("rose infopage");
+                      },
+                      icon: const Icon(Icons.arrow_circle_right_outlined),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
             child: Container(
@@ -57,9 +84,9 @@ class Diseasescreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 55),
-                    child: const Text(
+                  const Padding(
+                    padding: EdgeInsets.only(left: 55),
+                    child: Text(
                       "Rose",
                       style: TextStyle(
                         fontSize: 23,
@@ -74,15 +101,13 @@ class Diseasescreen extends StatelessWidget {
                       onPressed: () {
                         print("rose infopage");
                       },
-                      icon: Icon(Icons.arrow_circle_right_outlined),
+                      icon: const Icon(Icons.arrow_circle_right_outlined),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-
-          // Third Container
           Padding(
             padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
             child: Container(
@@ -91,20 +116,47 @@ class Diseasescreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
               ),
-              child: const Center(
-                child: Text(
-                  "Disease Info 3",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/orchid.jpg",
+                          fit: BoxFit.cover,
+                          width: 90,
+                          height: 90,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 55),
+                    child: Text(
+                      "Orchid",
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 67),
+                    child: IconButton(
+                      iconSize: 30,
+                      onPressed: () {
+                        print("rose infopage");
+                      },
+                      icon: const Icon(Icons.arrow_circle_right_outlined),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-
-          // Fourth Container
           Padding(
             padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
             child: Container(
@@ -113,15 +165,44 @@ class Diseasescreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
               ),
-              child: const Center(
-                child: Text(
-                  "Disease Info 4",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/plumeria.jpg",
+                          fit: BoxFit.cover,
+                          width: 90,
+                          height: 90,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 55),
+                    child: Text(
+                      "Plumeria",
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 45),
+                    child: IconButton(
+                      iconSize: 30,
+                      onPressed: () {
+                        print("rose infopage");
+                      },
+                      icon: const Icon(Icons.arrow_circle_right_outlined),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
