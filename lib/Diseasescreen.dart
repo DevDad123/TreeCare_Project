@@ -8,7 +8,6 @@ class Diseasescreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.green,
       body: ListView(
-        physics: const BouncingScrollPhysics(),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 18, left: 10, right: 10),
