@@ -1,11 +1,17 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:a/consts.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 
+import 'Chatbot.dart';
 import 'Diseasescreen.dart';
 import 'Infoscreen.dart';
 import 'Scanscreen.dart';
-import 'Subscription.dart';
+void main(){
+  Gemini.init(apiKey: GEMINI_API_KEY);
+  runApp(const Homescreen());
+}
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -19,7 +25,7 @@ class _HomescreenState extends State<Homescreen> {
     const HomeContent(),
     const Diseasescreen(),
     const Scanscreen(),
-    const Subscription(),
+    const Chatbot(),
     const Infoscreen(),
   ];
 
@@ -57,8 +63,8 @@ class _HomescreenState extends State<Homescreen> {
           Icon(Icons.home, color: Colors.black),
           Icon(Icons.medical_information, color: Colors.black),
           Icon(Icons.flip_camera_ios, color: Colors.black),
-          Icon(Icons.currency_bitcoin, color: Colors.black),
-          Icon(Icons.question_mark, color: Colors.black),
+          Icon(Icons.chat, color: Colors.black), // Fixed incorrect icon
+          Icon(Icons.info, color: Colors.black), // Changed for better clarity
         ],
         onTap: (index) {
           setState(() {
@@ -69,11 +75,21 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 }
+
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> menuItems = [
+      {"icon": Icons.home, "label": "Home"},
+      {"icon": Icons.medical_information, "label": "Disease Info"},
+      {"icon": Icons.qr_code_scanner, "label": "Scan"},
+      {"icon": Icons.chat, "label": "ChatBot"},
+      {"icon": Icons.info, "label": "Info"},
+      {"icon": Icons.settings, "label": "Settings"},
+    ];
+
     return Column(
       children: [
         Padding(
@@ -143,24 +159,8 @@ class HomeContent extends StatelessWidget {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
-                itemCount: 6,
+                itemCount: menuItems.length,
                 itemBuilder: (context, index) {
-                  final icons = [
-                    Icons.home,
-                    Icons.medical_information,
-                    Icons.qr_code_scanner,
-                    Icons.currency_bitcoin,
-                    Icons.question_mark,
-                    Icons.settings,
-                  ];
-                  final labels = [
-                    "Home",
-                    "Disease Info",
-                    "Scan",
-                    "Subscription",
-                    "Info",
-                    "Settings",
-                  ];
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -171,10 +171,16 @@ class HomeContent extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            print("Tapped on ${labels[index]}");
+                            if (menuItems[index]["label"] == "ChatBot") {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Chatbot()),
+                              );
+                            }
                           },
                           icon: Icon(
-                            icons[index],
+                            menuItems[index]["icon"],
                             size: 30,
                             color: Colors.green,
                           ),
@@ -182,7 +188,7 @@ class HomeContent extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        labels[index],
+                        menuItems[index]["label"],
                         style: const TextStyle(
                           fontSize: 12,
                           color: Colors.black,
